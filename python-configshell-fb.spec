@@ -6,12 +6,12 @@
 %define module	configshell
 Summary:	A Python library for building configuration shells
 Name:		python-configshell-fb
-Version:	1.1.fb10
+Version:	1.1.fb15
 Release:	1
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://codeload.github.com/agrover/configshell-fb/tar.gz/v%{version}
-# Source0-md5:	72e152e33785bd975cc3848653d1f0bd
+# Source0-md5:	1b4c0ba08e45aa44b7bb8796229d4330
 URL:		https://github.com/agrover/configshell-fb
 BuildRequires:	python-distribute
 BuildRequires:	rpm-pythonprov
