@@ -4,7 +4,8 @@
 %bcond_without	python3 # CPython 3.x module
 
 %define module	configshell
-Summary:	A Python library for building configuration shells
+Summary:	ConfigShell - Python 2 library for building configuration shells
+Summary(pl.UTF-8):	ConfigShell - biblioteka Pythona 2 do tworzenia powłok konfiguracyjnych
 Name:		python-configshell-fb
 Version:	1.1.fb15
 Release:	4
@@ -13,13 +14,16 @@ Group:		Libraries/Python
 Source0:	https://codeload.github.com/agrover/configshell-fb/tar.gz/v%{version}
 # Source0-md5:	1b4c0ba08e45aa44b7bb8796229d4330
 URL:		https://github.com/agrover/configshell-fb
-BuildRequires:	python-distribute
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
+BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	sed >= 4.0
+%if %{with python2}
+BuildRequires:	python-modules
+BuildRequires:	python-setuptools
+%endif
 %if %{with python3}
-BuildRequires:	python3-distribute
 BuildRequires:	python3-modules
+BuildRequires:	python3-setuptools
 %endif
 Requires:	python-modules
 Requires:	python-pyparsing
@@ -30,14 +34,24 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 configshell-fb is a Python library that provides a framework for
 building simple but nice CLI-based applications.
 
+%description -l pl.UTF-8
+configshell-fb to biblioteka Pythona udostępniająca szkielet do
+tworzenia prostych, ale ładnych aplikacji opartych na linii poleceń.
+
 %package -n python3-configshell-fb
-Summary:	A Python library for building configuration shells
+Summary:	ConfigShell - Python 3 library for building configuration shells
+Summary(pl.UTF-8):	ConfigShell - biblioteka Pythona 3 do tworzenia powłok konfiguracyjnych
 Group:		Libraries/Python
+Requires:	python3-modules
 Requires:	python3-pyparsing
 
 %description -n python3-configshell-fb
 configshell-fb is a Python library that provides a framework for
 building simple but nice CLI-based applications.
+
+%description -n python3-configshell-fb -l pl.UTF-8
+configshell-fb to biblioteka Pythona udostępniająca szkielet do
+tworzenia prostych, ale ładnych aplikacji opartych na linii poleceń.
 
 %prep
 %setup -q -n configshell-fb-%{version}
@@ -86,9 +100,9 @@ rm -rf $RPM_BUILD_ROOT
 %if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/configshell_fb-*.egg-info
 %endif
-%endif
 %dir %{_examplesdir}/%{name}-%{version}
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/myshell
+%endif
 
 %if %{with python3}
 %files -n python3-configshell-fb
@@ -96,6 +110,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 %{py3_sitescriptdir}/%{module}
 %{py3_sitescriptdir}/configshell_fb-*-py*.egg-info
-%endif
 %dir %{_examplesdir}/python3-configshell-fb-%{version}
 %attr(755,root,root) %{_examplesdir}/python3-configshell-fb-%{version}/myshell
+%endif
