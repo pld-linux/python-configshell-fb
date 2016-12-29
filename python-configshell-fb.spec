@@ -7,26 +7,28 @@
 Summary:	ConfigShell - Python 2 library for building configuration shells
 Summary(pl.UTF-8):	ConfigShell - biblioteka Pythona 2 do tworzenia powłok konfiguracyjnych
 Name:		python-configshell-fb
-Version:	1.1.fb15
-Release:	5
+Version:	1.1.fb21
+Release:	1
 License:	Apache v2.0
 Group:		Libraries/Python
-Source0:	https://codeload.github.com/agrover/configshell-fb/tar.gz/v%{version}
-# Source0-md5:	1b4c0ba08e45aa44b7bb8796229d4330
-URL:		https://github.com/agrover/configshell-fb
+#Source0Download: https://github.com/open-iscsi/configshell-fb/releases
+Source0:	https://github.com/open-iscsi/configshell-fb/archive/v%{version}/configshell-fb-%{version}.tar.gz
+# Source0-md5:	d741142e288fe5769d05602bef1b8c76
+URL:		https://github.com/open-iscsi/configshell-fb
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	sed >= 4.0
 %if %{with python2}
-BuildRequires:	python-modules
+BuildRequires:	python-modules >= 1:2.4
 BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules
+BuildRequires:	python3-modules >= 1:3.2
 BuildRequires:	python3-setuptools
 %endif
-Requires:	python-modules
+Requires:	python-modules >= 1:2.4
 Requires:	python-pyparsing
+Requires:	python-urwid
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,6 +46,7 @@ Summary(pl.UTF-8):	ConfigShell - biblioteka Pythona 3 do tworzenia powłok konfi
 Group:		Libraries/Python
 Requires:	python3-modules
 Requires:	python3-pyparsing
+Requires:	python3-urwid
 
 %description -n python3-configshell-fb
 configshell-fb is a Python library that provides a framework for
@@ -95,10 +98,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.md
-%dir %{py_sitescriptdir}/%{module}
-%{py_sitescriptdir}/%{module}/*.py[co]
+%{py_sitescriptdir}/configshell
+%{py_sitescriptdir}/configshell_fb
 %if "%{py_ver}" > "2.4"
-%{py_sitescriptdir}/configshell_fb-*.egg-info
+%{py_sitescriptdir}/configshell_fb-*-py*.egg-info
 %endif
 %dir %{_examplesdir}/%{name}-%{version}
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/myshell
@@ -108,7 +111,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python3-configshell-fb
 %defattr(644,root,root,755)
 %doc README.md
-%{py3_sitescriptdir}/%{module}
+%{py3_sitescriptdir}/configshell
+%{py3_sitescriptdir}/configshell_fb
 %{py3_sitescriptdir}/configshell_fb-*-py*.egg-info
 %dir %{_examplesdir}/python3-configshell-fb-%{version}
 %attr(755,root,root) %{_examplesdir}/python3-configshell-fb-%{version}/myshell
