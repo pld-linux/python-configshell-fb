@@ -7,13 +7,13 @@
 Summary:	ConfigShell - Python 2 library for building configuration shells
 Summary(pl.UTF-8):	ConfigShell - biblioteka Pythona 2 do tworzenia powłok konfiguracyjnych
 Name:		python-configshell-fb
-Version:	1.1.fb21
-Release:	2
+Version:	1.1.fb25
+Release:	1
 License:	Apache v2.0
 Group:		Libraries/Python
 #Source0Download: https://github.com/open-iscsi/configshell-fb/releases
 Source0:	https://github.com/open-iscsi/configshell-fb/archive/v%{version}/configshell-fb-%{version}.tar.gz
-# Source0-md5:	d741142e288fe5769d05602bef1b8c76
+# Source0-md5:	e4d5394815712f661c04917a429f3e06
 URL:		https://github.com/open-iscsi/configshell-fb
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
