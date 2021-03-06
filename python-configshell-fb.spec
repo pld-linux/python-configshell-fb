@@ -8,7 +8,7 @@ Summary:	ConfigShell - Python 2 library for building configuration shells
 Summary(pl.UTF-8):	ConfigShell - biblioteka Pythona 2 do tworzenia powłok konfiguracyjnych
 Name:		python-configshell-fb
 Version:	1.1.fb25
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Libraries/Python
 #Source0Download: https://github.com/open-iscsi/configshell-fb/releases
@@ -84,10 +84,12 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+%{__sed} -i -e '1s,/usr/bin/env python,%{__python},' $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/myshell
 %endif
 %if %{with python3}
 install -d $RPM_BUILD_ROOT%{_examplesdir}/python3-configshell-fb-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/python3-configshell-fb-%{version}
+%{__sed} -i -e '1s,/usr/bin/env python,%{__python3},' $RPM_BUILD_ROOT%{_examplesdir}/python3-configshell-fb-%{version}/myshell
 sed -i '1s|^#!.*python\b|#!%{__python3}|' $RPM_BUILD_ROOT%{_examplesdir}/python3-configshell-fb-%{version}/*
 %endif
 
